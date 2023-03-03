@@ -1,0 +1,10 @@
+{
+    "name": "webdevsavy/laravel-view-command",
+    "description": "A simple ",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1"
+    }
+}
