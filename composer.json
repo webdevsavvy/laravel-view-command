@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelViewCommand\\": "src/"
+            "Webdevsavy\\LaravelViewCommand\\": "src/"
         }
     },
     "extra": {
