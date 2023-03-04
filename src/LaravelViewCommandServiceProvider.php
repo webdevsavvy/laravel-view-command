@@ -1,6 +1,6 @@
 <?php
 
-namespace Webdevsavy\LaravelViewCommand;
+namespace Webdevsavvy\LaravelViewCommand;
 
 use Illuminate\Support\ServiceProvider;
 

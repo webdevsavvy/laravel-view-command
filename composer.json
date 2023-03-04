@@ -1,7 +1,7 @@
 {
-    "name": "webdevsavy/laravel-view-command",
-    "description": "A simple console command for generating views",
-    "keywords": ["webdevsavy", "laravel-view-command"],
+    "name": "webdevsavvy/laravel-view-command",
+    "description": "A simple console command for generating blade template views",
+    "keywords": ["webdevsavvy", "laravel-view-command"],
     "license": "MIT",
     "authors": [
         {
@@ -16,13 +16,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Webdevsavy\\LaravelViewCommand\\": "src/"
+            "Webdevsavvy\\LaravelViewCommand\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Webdevsavy\\LaravelViewCommand\\LaravelViewCommandServiceProvider"
+                "Webdevsavvy\\LaravelViewCommand\\LaravelViewCommandServiceProvider"
             ]
         }
     },
