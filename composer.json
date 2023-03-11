@@ -1,6 +1,6 @@
 {
-    "name": "webdevsavy/laravel-view-command",
-    "description": "A simple console command for generating views",
+    "name": "webdevsavy/laravel-view-commands",
+    "description": "A few simple console commands for generating views",
     "keywords": ["webdevsavy", "laravel-view-command"],
     "license": "MIT",
     "authors": [
