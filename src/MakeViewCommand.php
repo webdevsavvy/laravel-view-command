@@ -12,14 +12,17 @@ class MakeViewCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:view {view} {--layout=}';
+    protected $signature = 'make:view
+                            { view : The name and final path of the view following the . separator convention for file paths }
+                            { --layout= : The name of the layout that this view extends }
+                            { --resource : Generate all the views needed for a resource controller }';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new blade template view in the resources/views folder';
+    protected $description = 'Create a new blade template views in the resources/views directory';
 
     /**
      * Execute the console command.
@@ -30,19 +33,31 @@ class MakeViewCommand extends Command
     {
         $viewDescriptor = $this->argument('view');
         $layoutOption = $this->option('layout');
+        $resourceOption = $this->option('resource');
 
-        $path = $this->viewPath($viewDescriptor);
+        if (!$viewDescriptor) {
+            $viewDescriptor = $this->ask('What name should the view or directory have?');
 
-        $this->createDir($path);
+            $layoutOption = $this->confirm('Should the views extend a layout?') ? $this->ask('What is the name of the layout?') : null;
 
-        if (File::exists($path)) {
-            $this->error("View file {$path} already exists!");
-            return Command::FAILURE;
+            $resourceOption = $this->confirm('Create all the views for a resource?');
         }
 
-        File::put($path, $layoutOption ? "@extends('layouts.$layoutOption')" : "");
+        $paths = $resourceOption ? $this->generateResourceViewsPaths($viewDescriptor) : [$this->viewPath($viewDescriptor)];
 
-        $this->components->info("View file {$path} created successfully.");
+        foreach ($paths as $path) {
+
+            $this->createDir($path);
+
+            if (File::exists($path)) {
+                $this->error("View file {$path} already exists!");
+                return Command::FAILURE;
+            }
+
+            File::put($path, $layoutOption ? "@extends('layouts.$layoutOption')" : "");
+
+            $this->components->info("View file {$path} created successfully.");
+        }
 
         return Command::SUCCESS;
     }
@@ -54,13 +69,9 @@ class MakeViewCommand extends Command
      *
      * @return string
      */
-    private function viewPath($viewDescriptor)
+    private function viewPath(string $viewDescriptor)
     {
-        $viewDescriptor = str_replace('.', '/', $viewDescriptor) . '.blade.php';
-
-        $path = 'resources/views/' . $viewDescriptor;
-
-        return $path;
+        return resource_path('views/') . str_replace('.', '/', $viewDescriptor) . '.blade.php';
     }
 
     /**
@@ -75,5 +86,15 @@ class MakeViewCommand extends Command
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true);
         }
+    }
+
+    private function generateResourceViewsPaths(string $viewDescriptor)
+    {
+        $defaultViewPaths = ['create', 'edit', 'show', 'index'];
+
+        return array_map(function ($defaultPath) use ($viewDescriptor) {
+
+            return $this->viewPath($viewDescriptor . '.' . $defaultPath);
+        }, $defaultViewPaths);
     }
 }
