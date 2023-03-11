@@ -1,5 +1,5 @@
 {
-    "name": "webdevsavy/laravel-view-commands",
+    "name": "webdevsavvy/laravel-view-commands",
     "description": "A few simple console commands for generating views",
     "keywords": ["webdevsavy", "laravel-view-commands"],
     "license": "MIT",
