@@ -1,6 +1,6 @@
 <?php
 
-namespace Webdevsavy\LaravelViewCommand;
+namespace Webdevsavvy\LaravelViewCommand;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
