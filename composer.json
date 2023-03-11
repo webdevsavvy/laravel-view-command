@@ -16,13 +16,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Webdevsavy\\LaravelViewCommand\\": "src/"
+            "Webdevsavvy\\LaravelViewCommand\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Webdevsavy\\LaravelViewCommand\\LaravelViewCommandServiceProvider"
+                "Webdevsavvy\\LaravelViewCommand\\LaravelViewCommandServiceProvider"
             ]
         }
     },
